@@ -16,6 +16,7 @@ public class Game {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@JoinColumn(name = "id_game")
 	private Integer idGame;
+    @JoinColumn(name = "id_player")
 	private Integer idPlayer;
 //	@ManyToOne
 //	private Player player;

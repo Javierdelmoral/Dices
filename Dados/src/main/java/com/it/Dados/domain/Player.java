@@ -32,7 +32,7 @@ public class Player {
         this.successRate = successRate;
     }
 
-    public int getId() {
+    public Integer getId() {
         return idPlayer;
     }
 
@@ -41,11 +41,11 @@ public class Player {
     }
 
     public String getName() {
-        return name;
+        return name.toLowerCase();
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = name.toLowerCase();
     }
 
     public LocalDateTime getRegisterDate() {
