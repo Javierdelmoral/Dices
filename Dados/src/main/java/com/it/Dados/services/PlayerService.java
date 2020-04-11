@@ -39,7 +39,7 @@ public class PlayerService {
 		
 		for (int i = 0; i < playersList.size(); i++) {
 			
-			if(player.getName().equalsIgnoreCase(playersList.get(i).getName())) {
+			if(player.getName().equalsIgnoreCase(playersList.get(i).getName()) && !player.getName().equalsIgnoreCase("Anonymous")) {
 				exists = true;
 				
         		throw new ErrorException("The name '" + player.getName() + "' is already taken, choose another name please");      

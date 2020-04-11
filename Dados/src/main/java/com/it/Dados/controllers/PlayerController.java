@@ -20,8 +20,10 @@ public class PlayerController {
     PlayerService playerService;
 	
     @PostMapping("dices/players")
-    public void addPlayer (@RequestBody Player player){
+    public Player addPlayer (@RequestBody Player player){
         playerService.createPlayer(player);
+        
+        return player;
     }
     
     @GetMapping("dices/players")
