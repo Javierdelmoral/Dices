@@ -25,8 +25,9 @@ public class Game {
     @OnDelete(action = OnDeleteAction.CASCADE) //@Cascade(CascadeType.DELETE_ORPHAN)    
 	@JoinColumn(name = "id_player", nullable = false)
 	private Integer idPlayer;
-//	@ManyToOne
-//	private Player player;
+    @OnDelete(action = OnDeleteAction.CASCADE) //@Cascade(CascadeType.DELETE_ORPHAN)    
+	@ManyToOne
+	private Player player;
 	private Integer valueDice1;
 	private Integer valueDice2;
 	private boolean won;
@@ -38,7 +39,7 @@ public class Game {
 		super();
 		this.idGame = idGame;
 		this.idPlayer = idPlayer;
-//		this.player = new Player(idPlayer,"",null,0);
+		this.player = new Player(idPlayer,"",null,0);
 		this.valueDice1 = valueDice1;
 		this.valueDice2 = valueDice2;
 		this.won = won;
@@ -85,12 +86,12 @@ public class Game {
 		this.won = won;
 	}
 
-//	public Player getPlayer() {
-//		return player;
-//	}
-//
-//	public void setPlayer(Player player) {
-//		this.player = player;
-//	}
+	public Player getPlayer() {
+		return player;
+	}
+
+	public void setPlayer(Player player) {
+		this.player = player;
+	}
 
 }

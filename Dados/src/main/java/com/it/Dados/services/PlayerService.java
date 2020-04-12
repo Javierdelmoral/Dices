@@ -118,7 +118,7 @@ public class PlayerService {
 
 				updatePlayer.setName("Anonymous");
 
-//			if field "name" is not empty will check if that name exists 
+//			if field "name" is not empty will check if that name exists and then save it to repo
 			} else {
 
 				for (int i = 0; i < playersList.size(); i++) {
@@ -140,7 +140,6 @@ public class PlayerService {
 			return updatePlayer;
 
 		} else {
-			
 			throw new ErrorException(
 					"The Player with id '" + id + "' doesn't exists in our database, try with another one please.");
 		}
