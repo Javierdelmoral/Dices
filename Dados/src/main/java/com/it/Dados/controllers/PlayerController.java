@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -39,11 +40,18 @@ public class PlayerController {
         return playerService.getPlayerById(player.getId());
     }
     
+    @PutMapping("dices/players/id")
+    public String updatePlayerById(@RequestBody Player player){
+        playerService.updatePlayerById(player, player.getId());
+        
+        return "Player with id '" + player.getId() + "' was updated.";
+    }
+    
     @DeleteMapping("dices/players/id")
-    public void deletePlayerById(@RequestBody Player player){
+    public String deletePlayerById(@RequestBody Player player){
         playerService.deletePlayerById(player.getId());
         
-//        return "player with id '" + player.getId() + "' was deleted.";
+        return "Player with id '" + player.getId() + "' was deleted.";
     }
 
 }

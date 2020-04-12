@@ -70,35 +70,79 @@ public class PlayerService {
 	// GET player by id
 
 	public Player getPlayerById(Integer id) {
-		Player player = null;
+		Player player = new Player();
 
-		List<Player> playersList = new ArrayList<>();
+		if (playerRepository.findById(id).isPresent()) {
 
-		playerRepository.findAll().forEach(playersList::add);
+			player = playerRepository.getOne(id);
 
-		for (Player tempPlayer : playersList) {
-			if (tempPlayer.getId().equals(id)) {
-
-				player = tempPlayer;
-			}
-//			else {  					//TRY TO FIND A FORM TO COMUNICATE WHEN THE ID DOESN'T EXISTS THROUGH THE LIST OF PLAYERS!!!!!!!!!!
-//
-//				throw new ErrorException(
-//						"The id '" + id + "' doesn't exists in our database, try with another one please.");
-//			}
+		} else {
+			throw new ErrorException(
+					"The Player with id '" + id + "' doesn't exists in our database, try with another one please.");
 		}
 
 		return player;
 	}
 
 	// DELETE player by id
-	
-    @Transactional
-	public void deletePlayerById(Integer id) {
-		
-        playerRepository.deleteById(id);
-        
-//        java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`dices`.`game`, CONSTRAINT `FKss1l3mwkp44i09b7j2rolnyp5` FOREIGN KEY (`player_id_player`) REFERENCES `player` (`id_player`))
 
+	@Transactional
+	public void deletePlayerById(Integer id) {
+
+		if (playerRepository.findById(id).isPresent()) {
+
+			gameRepository.deleteByIdPlayer(id);
+			playerRepository.deleteById(id);
+
+		} else {
+			throw new ErrorException(
+					"The Player with id '" + id + "' doesn't exists in our database, try with another one please.");
+		}
+	}
+
+	// PUT player by id
+
+	public Player updatePlayerById(Player player, Integer id) {
+
+//		if player with ID 'x' exists...
+		if (playerRepository.findById(id).isPresent()) {
+
+			List<Player> playersList = new ArrayList<>();
+			playerRepository.findAll().forEach(playersList::add);
+
+//			Get player with the ID
+			Player updatePlayer = playerRepository.getOne(id);
+
+//			if field "name" of JSON Body is empty set it to ANONYMOUS
+			if (player.getName().equalsIgnoreCase("")) {
+
+				updatePlayer.setName("Anonymous");
+
+//			if field "name" is not empty will check if that name exists 
+			} else {
+
+				for (int i = 0; i < playersList.size(); i++) {
+
+					if (player.getName().equalsIgnoreCase(playersList.get(i).getName())
+							&& !player.getName().equalsIgnoreCase("Anonymous")) {
+
+						throw new ErrorException(
+								"The name '" + player.getName() + "' is already taken, choose another name please.");
+					} else {
+
+						updatePlayer.setName(player.getName());
+					}
+				}
+			}
+
+			playerRepository.save(updatePlayer);
+
+			return updatePlayer;
+
+		} else {
+			
+			throw new ErrorException(
+					"The Player with id '" + id + "' doesn't exists in our database, try with another one please.");
+		}
 	}
 }
