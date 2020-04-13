@@ -20,6 +20,8 @@ public class Player {
     private Integer idPlayer;
     private String name;
     private LocalDateTime registerDate;
+    private int totalDiceRolls;
+    private int gamesWon;
     private float successRate;
 
     public Player() {
@@ -63,6 +65,22 @@ public class Player {
     public void setSuccessRate(float successRate) {
         this.successRate = successRate;
     }
+
+	public int getGamesWon() {
+		return gamesWon;
+	}
+
+	public void setGamesWon(int gamesWon) {
+		this.gamesWon = gamesWon;
+	}
+
+	public int getTotalDiceRolls() {
+		return totalDiceRolls;
+	}
+
+	public void setTotalDiceRolls(int totalDiceRolls) {
+		this.totalDiceRolls = totalDiceRolls;
+	}
     
     
     
