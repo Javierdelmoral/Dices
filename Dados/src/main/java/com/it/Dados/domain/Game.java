@@ -18,7 +18,7 @@ import org.hibernate.annotations.OnDeleteAction;
 public class Game {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	@JoinColumn(name = "id_game")
 	private Integer idGame;
 	
@@ -39,7 +39,7 @@ public class Game {
 		super();
 		this.idGame = idGame;
 		this.idPlayer = idPlayer;
-		this.player = new Player(idPlayer,"",null,0);
+//		this.player = new Player(idPlayer,"",null,0);
 		this.valueDice1 = valueDice1;
 		this.valueDice2 = valueDice2;
 		this.won = won;
@@ -85,6 +85,14 @@ public class Game {
 	public void setWon(boolean won) {
 		this.won = won;
 	}
+	
+//	public boolean isWon() {
+//		return won = true;
+//	}
+//	
+//	public boolean isNotWon() {
+//		return won = false;
+//	}
 
 	public Player getPlayer() {
 		return player;
