@@ -19,29 +19,29 @@ import com.it.Dados.services.PlayerService;
 
 @RestController
 public class GameController {
-	
-    @Autowired
-    PlayerService playerService;
-    @Autowired
-    GameService gameService;
-    @Autowired
-    PlayerRepository playerRepository;
-    
-    @PostMapping("dices/players/id/games")
-    public Game createGame(@RequestBody Player player) {
-    	return gameService.createGame(player.getId());
-    }
-        
-    @GetMapping("dices/players/id/games")
-    public Map<String, List<GameDTO>> getAllGames(@RequestBody Player player){		
-        return gameService.getAllGames(player);
-    }
-    
-    @DeleteMapping("dices/players/id/games")
-    public String deleteAllGames(@RequestBody Player player){
-        gameService.deleteGamesById(player.getId());
 
-        return "All games of Player with ID '" + player.getId() + "' have been deleted.";
-    }
+	@Autowired
+	PlayerService playerService;
+	@Autowired
+	GameService gameService;
+	@Autowired
+	PlayerRepository playerRepository;
+
+	@PostMapping("dices/players/id/games")
+	public Game createGame(@RequestBody Player player) {
+		return gameService.createGame(player.getId());
+	}
+
+	@GetMapping("dices/players/id/games")
+	public Map<String, List<GameDTO>> getAllGames(@RequestBody Player player) {
+		return gameService.getAllGames(player);
+	}
+
+	@DeleteMapping("dices/players/id/games")
+	public String deleteAllGames(@RequestBody Player player) {
+		gameService.deleteGamesById(player.getId());
+
+		return "All games of Player with ID '" + player.getId() + "' have been deleted.";
+	}
 
 }

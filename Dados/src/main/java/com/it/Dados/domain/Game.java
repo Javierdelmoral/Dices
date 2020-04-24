@@ -18,14 +18,14 @@ import org.hibernate.annotations.OnDeleteAction;
 public class Game {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE/*TABLE*//*IDENTITY*/)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE/* TABLE *//* IDENTITY */)
 	@JoinColumn(name = "id_game")
 	private Integer idGame;
-	
-    @OnDelete(action = OnDeleteAction.CASCADE) //@Cascade(CascadeType.DELETE_ORPHAN)    
+
+	@OnDelete(action = OnDeleteAction.CASCADE) // @Cascade(CascadeType.DELETE_ORPHAN)
 	@JoinColumn(name = "id_player", nullable = false)
 	private Integer idPlayer;
-    @OnDelete(action = OnDeleteAction.CASCADE) //@Cascade(CascadeType.DELETE_ORPHAN)    
+	@OnDelete(action = OnDeleteAction.CASCADE) // @Cascade(CascadeType.DELETE_ORPHAN)
 	@ManyToOne
 	private Player player;
 	private Integer valueDice1;
@@ -53,7 +53,7 @@ public class Game {
 	public void setId(Integer idGame) {
 		this.idGame = idGame;
 	}
-	
+
 	public Integer getIdPlayer() {
 		return idPlayer;
 	}
@@ -85,7 +85,7 @@ public class Game {
 	public void setWon(boolean won) {
 		this.won = won;
 	}
-	
+
 //	public boolean isWon() {
 //		return won = true;
 //	}

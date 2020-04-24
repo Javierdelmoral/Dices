@@ -64,6 +64,8 @@ public class GameService {
 
 			gameRepository.save(gameTry);
 
+			gameTry.getPlayer().setRegisterDate(null);
+
 			System.out.println("Player: " + player.getId() + " ||| Number of game tries: " + player.getTotalDiceRolls()
 					+ " ||| won?: " + gameTry.getWon() + " ||| number of games won: " + player.getGamesWon()
 					+ " ||| Succes: " + player.getSuccessRate());
