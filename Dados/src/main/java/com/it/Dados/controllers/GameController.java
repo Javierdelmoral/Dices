@@ -35,37 +35,8 @@ public class GameController {
     }
         
     @GetMapping("dices/players/id/games")
-    public Map<String, List<GameDTO>> getAllGames(@RequestBody Player player){
-    	
-		player = playerRepository.getOne(player.getId());
-    	//save all games of playerX
-		List<Game> listGames = gameService.getAllGamesById(player.getId());
-		//list to add each new DTO realted to the list of games OG
-		List<GameDTO> listGamesDTO = new ArrayList<>();
-		//Map to relate the user with it's GameDTOs list
-		Map<String,List<GameDTO>> allGames = new HashMap<String,List<GameDTO>>();
-
-		for (int i = 0; i < listGames.size(); i++) {
-			//DTO to save the info of the fields we are interested to
-			GameDTO gameDTO = new GameDTO();
-
-			gameDTO.setIdGame(listGames.get(i).getId());
-			gameDTO.setIdPlayer(listGames.get(i).getIdPlayer());
-			gameDTO.setValueDice1(listGames.get(i).getDice1());
-			gameDTO.setValueDice2(listGames.get(i).getDice2());
-			gameDTO.setWon(listGames.get(i).getWon());
-			gameDTO.setTotalDiceRolls(listGames.get(i).getPlayer().getTotalDiceRolls());
-			gameDTO.setSuccessRate(listGames.get(i).getPlayer().getSuccessRate());
-			
-			listGamesDTO.add(i, gameDTO);
-		}
-		
-		System.out.println(listGamesDTO.toString());
-		allGames.put(player.getName().toUpperCase(), listGamesDTO);
-
-		//MIRAR DE EXTRAPOLAR ESTO A SERVICE Y DEJAR EL CONTROLLER MÁS LIMPIO
-		
-        return allGames;
+    public Map<String, List<GameDTO>> getAllGames(@RequestBody Player player){		
+        return gameService.getAllGames(player);
     }
     
     @DeleteMapping("dices/players/id/games")
