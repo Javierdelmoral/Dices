@@ -61,14 +61,15 @@ public class GameService {
 			// calculate the succes rate of player 'X' with total games won and total dice
 			// rolls and round to two decimals only, then save to player 'X' field
 			Double successRate = (((double) player.getGamesWon() / player.getTotalDiceRolls()) * 100);
-			successRate = Math.round(successRate*100.0)/100.0;
-			
+			successRate = Math.round(successRate * 100.0) / 100.0;
+
 			player.setSuccessRate(successRate);
 
 			gameRepository.save(gameTry);
 
 			System.out.println("Player: " + player.getId() + " ||| Number of game tries: " + player.getTotalDiceRolls()
-					+ " ||| won?: " + gameTry.getWon() + " ||| number of games won: " + player.getGamesWon() + " ||| Succes: " + player.getSuccessRate());
+					+ " ||| won?: " + gameTry.getWon() + " ||| number of games won: " + player.getGamesWon()
+					+ " ||| Succes: " + player.getSuccessRate());
 
 			return gameTry;
 
@@ -79,19 +80,19 @@ public class GameService {
 	}
 
 	// GET All games of a player
-	
-    public Map<String, List<GameDTO>> getAllGames(Player player){
-    	
+
+	public Map<String, List<GameDTO>> getAllGames(Player player) {
+
 		player = playerRepository.getOne(player.getId());
-    	//save all games of playerX
+		// save all games of playerX
 		List<Game> listGames = allGamesById(player.getId());
-		//list to add each new DTO realted to the list of games OG
+		// list to add each new DTO realted to the list of games OG
 		List<GameDTO> listGamesDTO = new ArrayList<>();
-		//Map to relate the user with it's GameDTOs list
-		Map<String,List<GameDTO>> allGames = new HashMap<String,List<GameDTO>>();
+		// Map to relate the user with it's GameDTOs list
+		Map<String, List<GameDTO>> allGames = new HashMap<String, List<GameDTO>>();
 
 		for (int i = 0; i < listGames.size(); i++) {
-			//DTO to save the info of the fields we are interested to
+			// DTO to save the info of the fields we are interested to
 			GameDTO gameDTO = new GameDTO();
 
 			gameDTO.setIdGame(listGames.get(i).getId());
@@ -101,33 +102,31 @@ public class GameService {
 			gameDTO.setWon(listGames.get(i).getWon());
 			gameDTO.setTotalDiceRolls(listGames.get(i).getPlayer().getTotalDiceRolls());
 			gameDTO.setSuccessRate(listGames.get(i).getPlayer().getSuccessRate());
-			
+
 			listGamesDTO.add(i, gameDTO);
 		}
-		
+
 		System.out.println(listGamesDTO.toString());
 		allGames.put(player.getName().toUpperCase(), listGamesDTO);
-		
-        return allGames;
-    }
-	
-	//method to get a list of games by player id
+
+		return allGames;
+	}
+
+	// method to get a list of games by player id
 
 	public List<Game> allGamesById(Integer id) {
 
 		if (playerRepository.findById(id).isPresent()) {
-			
+
 			List<Game> gamesList = gameRepository.findByIdPlayer(id);
-			
-			if(!gamesList.isEmpty()) {
-				
+
+			if (!gamesList.isEmpty()) {
+
 				return gameRepository.findByIdPlayer(id);
 			} else {
-				
-				throw new ErrorException(
-						"The Player with id '" + id + "' doesn't has any game saved.");
-			}
 
+				throw new ErrorException("The Player with id '" + id + "' doesn't have any saved games.");
+			}
 
 		} else {
 			throw new ErrorException(
