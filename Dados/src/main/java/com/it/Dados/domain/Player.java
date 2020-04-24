@@ -15,19 +15,21 @@ import javax.persistence.Table;
 public class Player {
 
     @Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE/*IDENTITY*/) //PROBAR ESE IDENTITY!
     @JoinColumn(name = "id_player")
     private Integer idPlayer;
     private String name;
     private LocalDateTime registerDate;
+    @JoinColumn(name = "success_rate")
+    private double successRate;
+    @JoinColumn(name = "total_dice_rolls")
     private int totalDiceRolls;
     private int gamesWon;
-    private float successRate;
 
     public Player() {
     }
 
-    public Player(Integer idPlayer, String name, LocalDateTime registerDate, float successRate) {
+    public Player(Integer idPlayer, String name, LocalDateTime registerDate, double successRate) {
         this.idPlayer = idPlayer;
         this.name = name;        
         this.registerDate = registerDate;
@@ -58,11 +60,11 @@ public class Player {
         this.registerDate = registerDate;
     }
 
-    public float getSuccessRate() {
+    public double getSuccessRate() {
         return successRate;
     }
 
-    public void setSuccessRate(float successRate) {
+    public void setSuccessRate(double successRate) {
         this.successRate = successRate;
     }
 

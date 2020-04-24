@@ -18,7 +18,7 @@ import org.hibernate.annotations.OnDeleteAction;
 public class Game {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.TABLE/*IDENTITY*/)
 	@JoinColumn(name = "id_game")
 	private Integer idGame;
 	

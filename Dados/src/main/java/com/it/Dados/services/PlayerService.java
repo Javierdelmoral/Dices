@@ -56,7 +56,6 @@ public class PlayerService {
 			player.setSuccessRate(player.getSuccessRate());
 			playerRepository.save(player);
 		}
-
 	}
 
 	// GET all players

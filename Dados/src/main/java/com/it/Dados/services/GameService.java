@@ -1,7 +1,10 @@
 package com.it.Dados.services;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,14 +57,16 @@ public class GameService {
 			player.setTotalDiceRolls(player.getTotalDiceRolls() + 1);
 
 			// calculate the succes rate of player 'X' with total games won and total dice
-			// rolls, then save to player 'X' field
-			float successRate = (((float) player.getGamesWon() / player.getTotalDiceRolls()) * 100);
+			// rolls and round to two decimals only, then save to player 'X' field
+			Double successRate = (((double) player.getGamesWon() / player.getTotalDiceRolls()) * 100);
+			successRate = Math.round(successRate*100.0)/100.0;
+			
 			player.setSuccessRate(successRate);
 
 			gameRepository.save(gameTry);
 
 			System.out.println("Player: " + player.getId() + " ||| Number of game tries: " + player.getTotalDiceRolls()
-					+ " ||| number of games won: " + player.getGamesWon() + " ||| Succes: " + player.getSuccessRate());
+					+ " ||| won?: " + gameTry.getWon() + " ||| number of games won: " + player.getGamesWon() + " ||| Succes: " + player.getSuccessRate());
 
 			return gameTry;
 
@@ -73,11 +78,21 @@ public class GameService {
 
 	// GET All games of a player
 
-	public List<Game> getAllGames(Integer id) {
+	public List<Game> getAllGamesById(Integer id) {
 
 		if (playerRepository.findById(id).isPresent()) {
+			
+			List<Game> gamesList = gameRepository.findByIdPlayer(id);
+			
+			if(!gamesList.isEmpty()) {
+				
+				return gameRepository.findByIdPlayer(id);
+			} else {
+				
+				throw new ErrorException(
+						"The Player with id '" + id + "' doesn't has any game saved.");
+			}
 
-			return gameRepository.findByIdPlayer(id);
 
 		} else {
 			throw new ErrorException(

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.it.Dados.domain.Player;
+import com.it.Dados.repositories.PlayerRepository;
 import com.it.Dados.services.PlayerService;
 
 
@@ -22,6 +23,8 @@ public class PlayerController {
 	
     @Autowired
     PlayerService playerService;
+    @Autowired
+    PlayerRepository playerRepository;
 	
     @PostMapping("dices/players")
     public Player createPlayer (@RequestBody Player player){
@@ -52,6 +55,13 @@ public class PlayerController {
         playerService.deletePlayerById(player.getId());
         
         return "Player with id '" + player.getId() + "' was deleted.";
+    }
+    
+    @DeleteMapping("dices/players")
+    public String deleteAllPlayers(){
+        playerRepository.deleteAll();
+        
+        return "All players were deleted!";
     }
 
 }
