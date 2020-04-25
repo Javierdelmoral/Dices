@@ -101,35 +101,35 @@ public class PlayerService {
 //		if player with ID 'x' exists...
 		if (playerRepository.findById(id).isPresent()) {
 
-			List<Player> playersList = new ArrayList<>();
-			playerRepository.findAll().forEach(playersList::add);
+			List<Player> playersList = playerRepository.findAll();
 
 //			Get player with the ID
 			Player updatePlayer = playerRepository.getOne(id);
+			
+			boolean exists = false;
 
-//			if field "name" of JSON Body is empty set it to ANONYMOUS
+//			if it's empty then set to anonymous
 			if (player.getName().equalsIgnoreCase("")) {
+				player.setName("Anonymous");
+			}
 
-				updatePlayer.setName("Anonymous");
+//			if it's not empty then check if the updated name already exists
+			for (int i = 0; i < playersList.size(); i++) {
 
-//			if field "name" is not empty will check if that name exists and then save it to repo
-			} else {
+				if (player.getName().equalsIgnoreCase(playersList.get(i).getName())
+						&& !player.getName().equalsIgnoreCase("Anonymous")) {
+					exists = true;
 
-				for (int i = 0; i < playersList.size(); i++) {
-
-					if (player.getName().equalsIgnoreCase(playersList.get(i).getName())
-							&& !player.getName().equalsIgnoreCase("Anonymous")) {
-
-						throw new ErrorException(
-								"The name '" + player.getName() + "' is already taken, choose another name please.");
-					} else {
-
-						updatePlayer.setName(player.getName());
-					}
+					throw new ErrorException(
+							"The name '" + player.getName() + "' is already taken, choose another name please.");
 				}
 			}
 
-			playerRepository.save(updatePlayer);
+//			if the updated name doesn't exist then update it
+			if (exists == false || player.getName().equalsIgnoreCase("Anonymous")) {
+				updatePlayer.setName(player.getName());
+				playerRepository.save(player);
+			}
 
 			return updatePlayer;
 
