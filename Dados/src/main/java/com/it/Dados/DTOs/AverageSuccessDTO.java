@@ -2,14 +2,13 @@ package com.it.Dados.DTOs;
 
 public class AverageSuccessDTO {
 	
-	private Double successRate;
+	private Double averageSuccess;
 
-	public Double getSuccessRate() {
-		return successRate;
+	public Double getAverageSuccess() {
+		return averageSuccess;
 	}
 
-	public void setSuccessRate(Double successRate) {
-		this.successRate = successRate;
+	public void setAverageSuccess(Double averageSuccess) {
+		this.averageSuccess = averageSuccess;
 	}
-
 }

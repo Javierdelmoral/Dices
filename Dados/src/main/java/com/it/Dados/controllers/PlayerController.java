@@ -41,7 +41,7 @@ public class PlayerController {
 	public List<Player> getAllPlayers() {
 		return playerService.getAllPlayers();
 	}
-	
+
 	@GetMapping("dices/players/ranking")
 	public List<Player> getAllPlayersRanking() {
 		return playerService.getAllPlayersRanking();
@@ -52,24 +52,21 @@ public class PlayerController {
 		return playerService.getPlayerById(player.getId());
 	}
 
-//	@JsonView(View.Summary.class)
+//	How to transform it to JSON directly? Now is pure String
 	@GetMapping("dices/players/average")
 	public ResponseEntity<String> getPlayersAverage() {
-		
-		try
-		{
+
+		try {
 			JSONObject averageJSON = playerService.getPlayersAverage();
-			return new ResponseEntity<String>( averageJSON.toString() , HttpStatus.FOUND);
-		}
-		catch (ErrorException e)
-		{
+			return new ResponseEntity<String>(averageJSON.toString(), HttpStatus.FOUND);
+		} catch (ErrorException e) {
 			String exceptionMessage = e.getMessage();
 			JSONObject sendData = new JSONObject();
 			JSONObject message = new JSONObject();
-			message.put("type" , "error");
-			message.put("message" , exceptionMessage);
-			sendData.put("Message" , message);
-			return new ResponseEntity<String>( sendData.toString() , HttpStatus.BAD_REQUEST);
+			message.put("type", "error");
+			message.put("message", exceptionMessage);
+			sendData.put("Message", message);
+			return new ResponseEntity<String>(sendData.toString(), HttpStatus.BAD_REQUEST);
 		}
 	}
 

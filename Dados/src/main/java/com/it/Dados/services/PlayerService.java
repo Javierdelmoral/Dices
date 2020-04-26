@@ -27,7 +27,6 @@ public class PlayerService {
 	// POST create new player
 
 	public void createPlayer(Player player) {
-		// TODO Auto-generated method stub
 		boolean exists = false;
 
 		if (player.getName().equalsIgnoreCase("")) {
@@ -88,7 +87,7 @@ public class PlayerService {
 			}
 
 			return player;
-			
+
 		} else {
 			throw new ErrorException("Doesn't exist any player!");
 		}
@@ -252,6 +251,5 @@ public class PlayerService {
 		}
 
 	}
-	
-	
+
 }
