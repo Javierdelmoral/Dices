@@ -85,4 +85,12 @@ public class Player {
 		this.totalDiceRolls = totalDiceRolls;
 	}
 
+	@Override
+	public String toString() {
+		return "\n" + "Player [idPlayer=" + idPlayer + ", name=" + name + ", successRate=" + successRate + ", totalDiceRolls="
+				+ totalDiceRolls + ", gamesWon=" + gamesWon + "]" + "\n";
+	}
+
+	
+	
 }
