@@ -1,6 +1,7 @@
 package com.it.Dados.controllers;
 
 import java.util.List;
+import java.util.Map;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.it.Dados.DTOs.GameDTO;
+import com.it.Dados.DTOs.PlayerDTO;
 import com.it.Dados.domain.Player;
 import com.it.Dados.exception.ErrorException;
 import com.it.Dados.tools.View;
@@ -37,18 +40,28 @@ public class PlayerController {
 		return player;
 	}
 
+//	@GetMapping("dices/players")
+//	public List<Player> getAllPlayers() {
+//		return playerService.getAllPlayers();
+//	}
+	
 	@GetMapping("dices/players")
-	public List<Player> getAllPlayers() {
+	public Map<String, List<PlayerDTO>> getAllPlayers() {
 		return playerService.getAllPlayers();
 	}
-	
+
 	@GetMapping("dices/players/id")
 	public Player getPlayerById(@RequestBody Player player) {
 		return playerService.getPlayerById(player.getId());
 	}
 
+//	@GetMapping("dices/players/ranking")
+//	public List<Player> getAllPlayersRanking() {
+//		return playerService.getAllPlayersRanking();
+//	}
+
 	@GetMapping("dices/players/ranking")
-	public List<Player> getAllPlayersRanking() {
+	public Map<String, List<PlayerDTO>> getAllGames() {
 		return playerService.getAllPlayersRanking();
 	}
 
@@ -83,7 +96,7 @@ public class PlayerController {
 
 		return "All players were deleted!";
 	}
-	
+
 	@DeleteMapping("dices/players/id")
 	public String deletePlayerById(@RequestBody Player player) {
 		playerService.deletePlayerById(player.getId());

@@ -2,10 +2,13 @@ package com.it.Dados.DTOs;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 public class PlayerDTO {
 
 	private Integer idPlayer;
 	private String name;
+	@JsonInclude(JsonInclude.Include.NON_NULL)
 	private LocalDateTime registerDate;
 	private int totalDiceRolls;
 	private int gamesWon;
@@ -58,4 +61,13 @@ public class PlayerDTO {
 	public void setSuccessRate(Double successRate) {
 		this.successRate = successRate;
 	}
+
+	@Override
+	public String toString() {
+		return "\n" + "PlayerDTO [idPlayer=" + idPlayer + ", name=" + name + ", registerDate=" + registerDate
+				+ ", totalDiceRolls=" + totalDiceRolls + ", gamesWon=" + gamesWon + ", successRate=" + successRate
+				+ "]";
+	}
+	
+	
 }

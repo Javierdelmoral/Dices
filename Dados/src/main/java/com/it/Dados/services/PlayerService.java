@@ -2,7 +2,10 @@ package com.it.Dados.services;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -10,6 +13,10 @@ import org.json.JSONString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.it.Dados.DTOs.GameDTO;
+import com.it.Dados.DTOs.PlayerDTO;
+import com.it.Dados.domain.Game;
 import com.it.Dados.domain.Player;
 import com.it.Dados.exception.ErrorException;
 import com.it.Dados.repositories.GameRepository;
@@ -57,18 +64,54 @@ public class PlayerService {
 		}
 	}
 
-	// GET all players
+	// GET all players without DTO
 
-	public List<Player> getAllPlayers() {
+//	public List<Player> getAllPlayers() {
+//
+//		if (playerRepository.count() > 0) {
+//
+//			return playerRepository.findAll();
+//
+//		} else {
+//			throw new ErrorException("Doesn't exist any player!");
+//		}
+//
+//	}
+
+	// GET all players with DTO (JSON properly ordered)
+
+	public Map<String, List<PlayerDTO>> getAllPlayers() {
 
 		if (playerRepository.count() > 0) {
 
-			return playerRepository.findAll();
+			List<Player> playersList = playerRepository.findAll();
+			// list to add each new DTO realted to the list of games OG
+			List<PlayerDTO> listPlayersDTO = new ArrayList<>();
+			// Map to relate the user with it's GameDTOs list
+			Map<String, List<PlayerDTO>> allPlayers = new HashMap<String, List<PlayerDTO>>();
+
+			for (int i = 0; i < playersList.size(); i++) {
+				// DTO to save the info of the fields we are interested to
+				PlayerDTO playerDTO = new PlayerDTO();
+
+				playerDTO.setIdPlayer(playersList.get(i).getId());
+				playerDTO.setName(playersList.get(i).getName());
+				playerDTO.setRegisterDate(playersList.get(i).getRegisterDate());
+				playerDTO.setTotalDiceRolls(playersList.get(i).getTotalDiceRolls());
+				playerDTO.setGamesWon(playersList.get(i).getGamesWon());
+				playerDTO.setSuccessRate(playersList.get(i).getSuccessRate());
+
+				listPlayersDTO.add(i, playerDTO);
+			}
+
+			System.out.println(listPlayersDTO.toString());
+			allPlayers.put("PLAYERS", listPlayersDTO);
+
+			return allPlayers;
 
 		} else {
 			throw new ErrorException("Doesn't exist any player!");
 		}
-
 	}
 
 	// GET player by id
@@ -92,7 +135,6 @@ public class PlayerService {
 		} else {
 			throw new ErrorException("Doesn't exist any player!");
 		}
-
 	}
 
 	// GET average success of all players
@@ -127,23 +169,67 @@ public class PlayerService {
 		}
 	}
 
-	// GET players by ranking
+	// GET players by ranking without DTO
 
-	public List<Player> getAllPlayersRanking() {
+//	public List<Player> getAllPlayersRanking() {
+//
+//		if (playerRepository.count() > 0) {
+//
+//			List<Player> playersList = playerRepository.findAll();
+//
+//			playersList.sort(Comparator.comparing(Player::getSuccessRate));
+//
+//			for (Player player : playersList) {
+//				player.setRegisterDate(null);
+//			}
+//
+//			return playersList;
+//
+//		} else {
+//			throw new ErrorException("There is no player!");
+//		}
+//	}
+	
+	// GET players by ranking with DTO (JSON properly ordered)
+
+	public Map<String, List<PlayerDTO>> getAllPlayersRanking() {
 
 		if (playerRepository.count() > 0) {
 
 			List<Player> playersList = playerRepository.findAll();
+			// list to add each new DTO realted to the list of games OG
+			List<PlayerDTO> listPlayersDTO = new ArrayList<>();
+			// Map to relate the user with it's GameDTOs list
+			Map<String, List<PlayerDTO>> allPlayersRanking = new HashMap<String, List<PlayerDTO>>();
 
-			playersList.sort(Comparator.comparing(Player::getSuccessRate));
+			for (int i = 0; i < playersList.size(); i++) {
+				// DTO to save the info of the fields we are interested to
+				PlayerDTO playerDTO = new PlayerDTO();
 
-			for (Player player : playersList) {
+				playerDTO.setIdPlayer(playersList.get(i).getId());
+				playerDTO.setName(playersList.get(i).getName());
+				playerDTO.setRegisterDate(playersList.get(i).getRegisterDate());
+				playerDTO.setTotalDiceRolls(playersList.get(i).getTotalDiceRolls());
+				playerDTO.setGamesWon(playersList.get(i).getGamesWon());
+				playerDTO.setSuccessRate(playersList.get(i).getSuccessRate());
+
+				listPlayersDTO.add(i, playerDTO);
+			}
+
+			//Sort all players by they succes rate and reverse it from best to worst
+			listPlayersDTO.sort(Comparator.comparing(PlayerDTO::getSuccessRate).reversed());
+
+			for (PlayerDTO player : listPlayersDTO) {
 				player.setRegisterDate(null);
 			}
 
-			return playersList;
+			System.out.println(listPlayersDTO.toString());
+			allPlayersRanking.put("RANKING", listPlayersDTO);
+
+			return allPlayersRanking;
 
 		} else {
+
 			throw new ErrorException("There is no player!");
 		}
 	}
@@ -217,7 +303,5 @@ public class PlayerService {
 		} else {
 			throw new ErrorException("Doesn't exist any player!");
 		}
-
 	}
-
 }
