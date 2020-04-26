@@ -1,6 +1,7 @@
 package com.it.Dados.services;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -133,51 +134,18 @@ public class PlayerService {
 		if (playerRepository.count() > 0) {
 
 			List<Player> playersList = playerRepository.findAll();
-			List<Player> rankingList = new ArrayList<Player>();
 
-			for (int i = 0; i < playersList.size() - 1; i++) {
+			playersList.sort(Comparator.comparing(Player::getSuccessRate));
 
-				Player player = new Player();
-				Player player1 = playersList.get(i);
-
-				for (int j = 0; j < playersList.size() - 1; j++) {
-
-					Player player2 = playersList.get(j + 1);
-
-					if (player1.getSuccessRate() > player2.getSuccessRate()) {
-
-						player = player1;
-						player1 = player2;
-						player2 = player;
-
-						rankingList.add(player1);
-					}
-
-				}
-
+			for (Player player : playersList) {
+				player.setRegisterDate(null);
 			}
-//				
-//				Player player1 = playersList.get(i);
-//				
-//				for (int j = 0; j < playersList.size()-1; j++) {
-//
-//					Player player2 = playersList.get(j + 1);
-//
-//					if (player1.getSuccessRate() > player2.getSuccessRate()) {
-//
-//						rankingList.add(player1);
-//
-//					}
-//				}
-//			}
 
-			System.out.println(rankingList);
-			return rankingList;
+			return playersList;
 
 		} else {
 			throw new ErrorException("There is no player!");
 		}
-
 	}
 
 	// DELETE player by id

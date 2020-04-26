@@ -41,18 +41,18 @@ public class PlayerController {
 	public List<Player> getAllPlayers() {
 		return playerService.getAllPlayers();
 	}
+	
+	@GetMapping("dices/players/id")
+	public Player getPlayerById(@RequestBody Player player) {
+		return playerService.getPlayerById(player.getId());
+	}
 
 	@GetMapping("dices/players/ranking")
 	public List<Player> getAllPlayersRanking() {
 		return playerService.getAllPlayersRanking();
 	}
 
-	@GetMapping("dices/players/id")
-	public Player getPlayerById(@RequestBody Player player) {
-		return playerService.getPlayerById(player.getId());
-	}
-
-//	How to transform it to JSON directly? Now is pure String
+//	How to transform it to JSON directly? Now is pure String(in json format)
 	@GetMapping("dices/players/average")
 	public ResponseEntity<String> getPlayersAverage() {
 
@@ -77,18 +77,17 @@ public class PlayerController {
 		return "Player with id '" + player.getId() + "' was updated.";
 	}
 
-	@DeleteMapping("dices/players/id")
-	public String deletePlayerById(@RequestBody Player player) {
-		playerService.deletePlayerById(player.getId());
-
-		return "Player with id '" + player.getId() + "' was deleted.";
-	}
-
 	@DeleteMapping("dices/players")
 	public String deleteAllPlayers() {
 		playerRepository.deleteAll();
 
 		return "All players were deleted!";
 	}
+	
+	@DeleteMapping("dices/players/id")
+	public String deletePlayerById(@RequestBody Player player) {
+		playerService.deletePlayerById(player.getId());
 
+		return "Player with id '" + player.getId() + "' was deleted.";
+	}
 }

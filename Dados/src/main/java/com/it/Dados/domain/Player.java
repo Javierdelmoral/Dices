@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 public class Player {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE/* IDENTITY */) // PROBAR ESE IDENTITY!
+	@GeneratedValue(strategy = GenerationType.SEQUENCE/* IDENTITY */) 
 	@JoinColumn(name = "id_player")
 	private Integer idPlayer;
 	private String name;
@@ -87,10 +87,8 @@ public class Player {
 
 	@Override
 	public String toString() {
-		return "\n" + "Player [idPlayer=" + idPlayer + ", name=" + name + ", successRate=" + successRate + ", totalDiceRolls="
-				+ totalDiceRolls + ", gamesWon=" + gamesWon + "]" + "\n";
+		return "\n" + "Player [idPlayer=" + idPlayer + ", name=" + name + ", successRate=" + successRate
+				+ ", totalDiceRolls=" + totalDiceRolls + ", gamesWon=" + gamesWon + "]" + "\n";
 	}
 
-	
-	
 }

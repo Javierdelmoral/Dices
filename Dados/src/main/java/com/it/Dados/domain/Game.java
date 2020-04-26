@@ -21,7 +21,6 @@ public class Game {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE/* TABLE *//* IDENTITY */)
 	@JoinColumn(name = "id_game")
 	private Integer idGame;
-
 	@OnDelete(action = OnDeleteAction.CASCADE) // @Cascade(CascadeType.DELETE_ORPHAN)
 	@JoinColumn(name = "id_player", nullable = false)
 	private Integer idPlayer;
@@ -85,14 +84,6 @@ public class Game {
 	public void setWon(boolean won) {
 		this.won = won;
 	}
-
-//	public boolean isWon() {
-//		return won = true;
-//	}
-//	
-//	public boolean isNotWon() {
-//		return won = false;
-//	}
 
 	public Player getPlayer() {
 		return player;
