@@ -255,7 +255,8 @@ public class PlayerService {
 				// if the updated name doesn't exist then update it
 				if (exists == false || player.getName().equalsIgnoreCase("Anonymous")) {
 					updatePlayer.setName(player.getName());
-					playerRepository.save(player);
+
+					playerRepository.save(updatePlayer);
 				}
 
 				return updatePlayer;
