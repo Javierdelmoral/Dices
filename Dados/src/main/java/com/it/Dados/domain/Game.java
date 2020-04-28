@@ -18,13 +18,13 @@ import org.hibernate.annotations.OnDeleteAction;
 public class Game {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE/* TABLE *//* IDENTITY */)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@JoinColumn(name = "id_game")
 	private Integer idGame;
-	@OnDelete(action = OnDeleteAction.CASCADE) // @Cascade(CascadeType.DELETE_ORPHAN)
+	@OnDelete(action = OnDeleteAction.CASCADE) 
 	@JoinColumn(name = "id_player", nullable = false)
 	private Integer idPlayer;
-	@OnDelete(action = OnDeleteAction.CASCADE) // @Cascade(CascadeType.DELETE_ORPHAN)
+	@OnDelete(action = OnDeleteAction.CASCADE) 
 	@ManyToOne
 	private Player player;
 	private Integer valueDice1;
@@ -38,7 +38,6 @@ public class Game {
 		super();
 		this.idGame = idGame;
 		this.idPlayer = idPlayer;
-//		this.player = new Player(idPlayer,"",null,0);
 		this.valueDice1 = valueDice1;
 		this.valueDice2 = valueDice2;
 		this.won = won;
@@ -92,5 +91,4 @@ public class Game {
 	public void setPlayer(Player player) {
 		this.player = player;
 	}
-
 }

@@ -64,20 +64,6 @@ public class PlayerService {
 		}
 	}
 
-	// GET all players without DTO
-
-//	public List<Player> getAllPlayers() {
-//
-//		if (playerRepository.count() > 0) {
-//
-//			return playerRepository.findAll();
-//
-//		} else {
-//			throw new ErrorException("Doesn't exist any player!");
-//		}
-//
-//	}
-
 	// GET all players with DTO (JSON properly ordered)
 
 	public Map<String, List<PlayerDTO>> getAllPlayers() {
@@ -110,7 +96,7 @@ public class PlayerService {
 			return allPlayers;
 
 		} else {
-			throw new ErrorException("Doesn't exist any player!");
+			throw new ErrorException("There is no player!");
 		}
 	}
 
@@ -133,7 +119,7 @@ public class PlayerService {
 			return player;
 
 		} else {
-			throw new ErrorException("Doesn't exist any player!");
+			throw new ErrorException("There is no player!");
 		}
 	}
 
@@ -169,27 +155,6 @@ public class PlayerService {
 		}
 	}
 
-	// GET players by ranking without DTO
-
-//	public List<Player> getAllPlayersRanking() {
-//
-//		if (playerRepository.count() > 0) {
-//
-//			List<Player> playersList = playerRepository.findAll();
-//
-//			playersList.sort(Comparator.comparing(Player::getSuccessRate));
-//
-//			for (Player player : playersList) {
-//				player.setRegisterDate(null);
-//			}
-//
-//			return playersList;
-//
-//		} else {
-//			throw new ErrorException("There is no player!");
-//		}
-//	}
-	
 	// GET players by ranking with DTO (JSON properly ordered)
 
 	public Map<String, List<PlayerDTO>> getAllPlayersRanking() {
@@ -197,7 +162,7 @@ public class PlayerService {
 		if (playerRepository.count() > 0) {
 
 			List<Player> playersList = playerRepository.findAll();
-			// list to add each new DTO realted to the list of games OG
+			// list to add each new DTO related to the list of games OG
 			List<PlayerDTO> listPlayersDTO = new ArrayList<>();
 			// Map to relate the user with it's GameDTOs list
 			Map<String, List<PlayerDTO>> allPlayersRanking = new HashMap<String, List<PlayerDTO>>();
@@ -216,7 +181,7 @@ public class PlayerService {
 				listPlayersDTO.add(i, playerDTO);
 			}
 
-			//Sort all players by they succes rate and reverse it from best to worst
+			// Sort all players by they succes rate and reverse it from best to worst
 			listPlayersDTO.sort(Comparator.comparing(PlayerDTO::getSuccessRate).reversed());
 
 			for (PlayerDTO player : listPlayersDTO) {
@@ -250,7 +215,7 @@ public class PlayerService {
 						"The Player with id '" + id + "' doesn't exists in our database, try with another one please.");
 			}
 		} else {
-			throw new ErrorException("Doesn't exist any player!");
+			throw new ErrorException("There is no player!");
 		}
 	}
 
@@ -260,22 +225,22 @@ public class PlayerService {
 
 		if (playerRepository.count() > 0) {
 
-//			if player with ID 'x' exists...
+			// if player with ID 'x' exists...
 			if (playerRepository.findById(id).isPresent()) {
 
 				List<Player> playersList = playerRepository.findAll();
 
-//			Get player with the ID
+				// Get player with the ID
 				Player updatePlayer = playerRepository.getOne(id);
 
 				boolean exists = false;
 
-//			if it's empty then set to anonymous
+				// if it's empty then set to anonymous
 				if (player.getName().equalsIgnoreCase("")) {
 					player.setName("Anonymous");
 				}
 
-//			if it's not empty then check if the updated name already exists
+				// if it's not empty then check if the updated name already exists
 				for (int i = 0; i < playersList.size(); i++) {
 
 					if (player.getName().equalsIgnoreCase(playersList.get(i).getName())
@@ -287,7 +252,7 @@ public class PlayerService {
 					}
 				}
 
-//			if the updated name doesn't exist then update it
+				// if the updated name doesn't exist then update it
 				if (exists == false || player.getName().equalsIgnoreCase("Anonymous")) {
 					updatePlayer.setName(player.getName());
 					playerRepository.save(player);
@@ -301,7 +266,7 @@ public class PlayerService {
 			}
 
 		} else {
-			throw new ErrorException("Doesn't exist any player!");
+			throw new ErrorException("There is no player!");
 		}
 	}
 }

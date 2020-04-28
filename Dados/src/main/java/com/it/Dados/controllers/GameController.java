@@ -43,5 +43,4 @@ public class GameController {
 
 		return "All games of Player with ID '" + player.getId() + "' have been deleted.";
 	}
-
 }

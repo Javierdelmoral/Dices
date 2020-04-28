@@ -12,18 +12,6 @@ public class GameDTO {
 	private boolean won;
 	private int totalDiceRolls;
 	private Double successRate;
-	
-//	public GameDTO(Game game, Player player) {
-//		super();
-//		this.idGame = game.getId();
-//		this.idPlayer = player.getId();
-//		this.playerName = player.getName();
-//		this.valueDice1 = game.getDice1();
-//		this.valueDice2 = game.getDice2();
-//		this.won = game.getWon();
-//		this.totalDiceRolls = player.getTotalDiceRolls();
-//		this.successRate = player.getSuccessRate();
-//	}
 
 	public Integer getIdGame() {
 		return idGame;
@@ -87,6 +75,4 @@ public class GameDTO {
 				+ valueDice1 + ", valueDice2=" + valueDice2 + ", won=" + won + ", totalDiceRolls=" + totalDiceRolls
 				+ ", successRate=" + successRate + "]";
 	}
-	
-	
 }

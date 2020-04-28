@@ -68,6 +68,4 @@ public class PlayerDTO {
 				+ ", totalDiceRolls=" + totalDiceRolls + ", gamesWon=" + gamesWon + ", successRate=" + successRate
 				+ "]";
 	}
-	
-	
 }

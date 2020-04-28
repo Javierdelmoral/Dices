@@ -40,11 +40,6 @@ public class PlayerController {
 
 		return player;
 	}
-
-//	@GetMapping("dices/players")
-//	public List<Player> getAllPlayers() {
-//		return playerService.getAllPlayers();
-//	}
 	
 	@GetMapping("dices/players")
 	public Map<String, List<PlayerDTO>> getAllPlayers() {
@@ -55,11 +50,6 @@ public class PlayerController {
 	public Player getPlayerById(@RequestBody Player player) {
 		return playerService.getPlayerById(player.getId());
 	}
-
-//	@GetMapping("dices/players/ranking")
-//	public List<Player> getAllPlayersRanking() {
-//		return playerService.getAllPlayersRanking();
-//	}
 
 	@GetMapping("dices/players/ranking")
 	public Map<String, List<PlayerDTO>> getRanking() {

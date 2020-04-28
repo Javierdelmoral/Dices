@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 public class Player {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE/* IDENTITY */) 
+	@GeneratedValue(strategy = GenerationType.SEQUENCE) 
 	@JoinColumn(name = "id_player")
 	private Integer idPlayer;
 	private String name;
@@ -90,5 +90,4 @@ public class Player {
 		return "\n" + "Player [idPlayer=" + idPlayer + ", name=" + name + ", successRate=" + successRate
 				+ ", totalDiceRolls=" + totalDiceRolls + ", gamesWon=" + gamesWon + "]" + "\n";
 	}
-
 }

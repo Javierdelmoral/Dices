@@ -7,5 +7,4 @@ public class ErrorException extends RuntimeException{
 	public ErrorException(String Message) {
 		super(Message);
 	}	
-
 }
