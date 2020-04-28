@@ -1,5 +1,6 @@
 package com.it.Dados.controllers;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -61,8 +62,30 @@ public class PlayerController {
 //	}
 
 	@GetMapping("dices/players/ranking")
-	public Map<String, List<PlayerDTO>> getAllGames() {
+	public Map<String, List<PlayerDTO>> getRanking() {
 		return playerService.getAllPlayersRanking();
+	}
+	
+	@GetMapping("dices/players/worst")
+	public Player getWorstPlayer() {
+		List<Player> listPlayers = playerRepository.findAll();
+		
+		listPlayers.sort(Comparator.comparing(Player::getSuccessRate));
+		
+		Player worstPlayer = listPlayers.get(0);
+
+		return worstPlayer;
+	}
+	
+	@GetMapping("dices/players/best")
+	public Player getBestPlayer() {
+		List<Player> listPlayers = playerRepository.findAll();
+		
+		listPlayers.sort(Comparator.comparing(Player::getSuccessRate));
+		
+		Player bestPlayer = listPlayers.get(listPlayers.size()-1);
+
+		return bestPlayer;
 	}
 
 //	How to transform it to JSON directly? Now is pure String(in json format)
