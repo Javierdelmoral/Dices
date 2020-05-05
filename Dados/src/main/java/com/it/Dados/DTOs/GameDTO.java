@@ -9,6 +9,10 @@ public class GameDTO {
 	private Integer idPlayer;
 	private Integer valueDice1;
 	private Integer valueDice2;
+	private Integer valueDice3;
+	private Integer valueDice4;
+	private Integer valueDice5;
+	private Integer valueDice6;
 	private boolean won;
 	private int totalDiceRolls;
 	private Double successRate;
@@ -44,7 +48,38 @@ public class GameDTO {
 	public void setValueDice2(Integer valueDice2) {
 		this.valueDice2 = valueDice2;
 	}
+	
+	public Integer getValueDice3() {
+		return valueDice3;
+	}
 
+	public void setValueDice3(Integer valueDice3) {
+		this.valueDice3 = valueDice3;
+	}
+
+	public Integer getValueDice4() {
+		return valueDice4;
+	}
+
+	public void setValueDice4(Integer valueDice4) {
+		this.valueDice4 = valueDice4;
+	}
+
+	public Integer getValueDice5() {
+		return valueDice5;
+	}
+
+	public void setValueDice5(Integer valueDice5) {
+		this.valueDice5 = valueDice5;
+	}
+
+	public Integer getValueDice6() {
+		return valueDice6;
+	}
+
+	public void setValueDice6(Integer valueDice6) {
+		this.valueDice6 = valueDice6;
+	}
 	public boolean isWon() {
 		return won;
 	}
@@ -71,8 +106,18 @@ public class GameDTO {
 
 	@Override
 	public String toString() {
-		return "\n" + "GameDTO " + "\n" + "[idGame=" + idGame + ", idPlayer=" + idPlayer + ", valueDice1="
-				+ valueDice1 + ", valueDice2=" + valueDice2 + ", won=" + won + ", totalDiceRolls=" + totalDiceRolls
+		return "\n" + "GameDTO " + "\n" + "[idGame=" + idGame + ", idPlayer=" + idPlayer + ", valueDice1=" + valueDice1 + ", valueDice2="
+				+ valueDice2 + ", valueDice3=" + valueDice3 + ", valueDice4=" + valueDice4 + ", valueDice5="
+				+ valueDice5 + ", valueDice6=" + valueDice6 + ", won=" + won + ", totalDiceRolls=" + totalDiceRolls
 				+ ", successRate=" + successRate + "]";
 	}
+	
+//	@Override
+//	public String toString() {
+//		return "\n" + "GameDTO " + "\n" + "[idGame=" + idGame + ", idPlayer=" + idPlayer + ", valueDice1="
+//				+ valueDice1 + ", valueDice2=" + valueDice2 + ", won=" + won + ", totalDiceRolls=" + totalDiceRolls
+//				+ ", successRate=" + successRate + "]";
+//	}
+
+
 }

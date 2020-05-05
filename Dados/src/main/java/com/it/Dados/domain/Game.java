@@ -29,17 +29,27 @@ public class Game {
 	private Player player;
 	private Integer valueDice1;
 	private Integer valueDice2;
+	private Integer valueDice3;
+	private Integer valueDice4;
+	private Integer valueDice5;
+	private Integer valueDice6;
+
 	private boolean won;
 
 	public Game() {
 	}
 
-	public Game(Integer idGame, Integer idPlayer, Integer valueDice1, Integer valueDice2, boolean won) {
+	public Game(Integer idGame, Integer idPlayer, Integer valueDice1, Integer valueDice2, Integer valueDice3, Integer valueDice4, Integer valueDice5, Integer valueDice6, boolean won) {
 		super();
 		this.idGame = idGame;
 		this.idPlayer = idPlayer;
 		this.valueDice1 = valueDice1;
 		this.valueDice2 = valueDice2;
+		this.valueDice3 = valueDice3;
+		this.valueDice4 = valueDice4;
+		this.valueDice5 = valueDice5;
+		this.valueDice6 = valueDice6;
+
 		this.won = won;
 
 	}
@@ -74,6 +84,38 @@ public class Game {
 
 	public void setDice2(Integer valueDice2) {
 		this.valueDice2 = valueDice2;
+	}
+	
+	public Integer getDice3() {
+		return valueDice3;
+	}
+
+	public void setDice3(Integer valueDice3) {
+		this.valueDice3 = valueDice3;
+	}
+	
+	public Integer getDice4() {
+		return valueDice4;
+	}
+
+	public void setDice4(Integer valueDice4) {
+		this.valueDice4 = valueDice4;
+	}
+	
+	public Integer getDice5() {
+		return valueDice5;
+	}
+
+	public void setDice5(Integer valueDice5) {
+		this.valueDice5 = valueDice5;
+	}
+	
+	public Integer getDice6() {
+		return valueDice6;
+	}
+
+	public void setDice6(Integer valueDice6) {
+		this.valueDice6 = valueDice6;
 	}
 
 	public boolean getWon() {

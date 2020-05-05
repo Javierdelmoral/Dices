@@ -38,13 +38,18 @@ public class GameService {
 				// random dice rolls and convert to Integers
 				gameTry.setDice1((int) Math.floor(Math.random() * 6 + 1));
 				gameTry.setDice2((int) Math.floor(Math.random() * 6 + 1));
+				gameTry.setDice3((int) Math.floor(Math.random() * 6 + 1));
+				gameTry.setDice4((int) Math.floor(Math.random() * 6 + 1));
+				gameTry.setDice5((int) Math.floor(Math.random() * 6 + 1));
+				gameTry.setDice6((int) Math.floor(Math.random() * 6 + 1));
 
 				// set the actual amount of dice rolls of player 'X'
 				player.setTotalDiceRolls(player.getTotalDiceRolls());
 
-				int totalValue = gameTry.getDice1() + gameTry.getDice2();
+				int totalValue = gameTry.getDice1() + gameTry.getDice2() + gameTry.getDice3() + gameTry.getDice4()
+						+ gameTry.getDice5() + gameTry.getDice6();
 
-				if (totalValue == 7) {
+				if (totalValue >= 12 && totalValue <= 18) {
 					gameTry.setWon(true);
 					// each won game is enumerated and saved
 					player.setGamesWon(player.getGamesWon() + 1);
@@ -68,7 +73,7 @@ public class GameService {
 				gameTry.getPlayer().setRegisterDate(null);
 
 				System.out.println("Player: " + player.getId() + " ||| Number of game tries: "
-						+ player.getTotalDiceRolls() + " ||| won?: " + gameTry.getWon() + " ||| number of games won: "
+						+ player.getTotalDiceRolls() + " ||| won?: " + gameTry.getWon() + " ||| total value of all dices: " + totalValue +" ||| number of games won: "
 						+ player.getGamesWon() + " ||| Succes: " + player.getSuccessRate());
 
 				return gameTry;
@@ -106,6 +111,11 @@ public class GameService {
 					gameDTO.setIdPlayer(listGames.get(i).getIdPlayer());
 					gameDTO.setValueDice1(listGames.get(i).getDice1());
 					gameDTO.setValueDice2(listGames.get(i).getDice2());
+					gameDTO.setValueDice3(listGames.get(i).getDice3());
+					gameDTO.setValueDice4(listGames.get(i).getDice4());
+					gameDTO.setValueDice5(listGames.get(i).getDice5());
+					gameDTO.setValueDice6(listGames.get(i).getDice6());
+
 					gameDTO.setWon(listGames.get(i).getWon());
 					gameDTO.setTotalDiceRolls(listGames.get(i).getPlayer().getTotalDiceRolls());
 					gameDTO.setSuccessRate(listGames.get(i).getPlayer().getSuccessRate());
