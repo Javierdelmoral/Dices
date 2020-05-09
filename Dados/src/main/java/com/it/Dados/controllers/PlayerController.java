@@ -3,6 +3,7 @@ package com.it.Dados.controllers;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +11,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,10 +49,16 @@ public class PlayerController {
 		return playerService.getAllPlayers();
 	}
 
-	@GetMapping("dices/players/id")
-	public Player getPlayerById(@RequestBody Player player) {
-		return playerService.getPlayerById(player.getId());
-	}
+//	@GetMapping("dices/players/id")
+//	public Player getPlayerById(@RequestBody Player player) {
+//		return playerService.getPlayerById(player.getId());
+//	}
+	
+	//Here we're using a RequestMapping instead of GetMapping because it can cause problems with the browsers
+    @RequestMapping("dices/players/{id}")
+    public Player getPlayer(@PathVariable Integer id){
+        return playerService.getPlayerById(id);
+    }
 
 	@GetMapping("dices/players/ranking")
 	public Map<String, List<PlayerDTO>> getRanking() {

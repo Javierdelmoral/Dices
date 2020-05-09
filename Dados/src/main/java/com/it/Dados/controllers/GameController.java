@@ -6,8 +6,10 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.it.Dados.DTOs.GameDTO;
@@ -32,9 +34,15 @@ public class GameController {
 		return gameService.createGame(player.getId());
 	}
 
-	@GetMapping("dices/players/id/games")
-	public Map<String, List<GameDTO>> getAllGames(@RequestBody Player player) {
-		return gameService.getAllGames(player);
+//	@GetMapping("dices/players/id/games")
+//	public Map<String, List<GameDTO>> getAllGames(@RequestBody Player player) {
+//		return gameService.getAllGames(player);
+//	}
+	
+	//Here we're using a RequestMapping instead of GetMapping because it can cause problems with the browsers
+	@RequestMapping("dices/players/{id}/games")
+	public Map<String, List<GameDTO>> getAllGames(@PathVariable Integer id) {
+		return gameService.getAllGames(id);
 	}
 
 	@DeleteMapping("dices/players/id/games")

@@ -90,8 +90,11 @@ public class GameService {
 
 	// GET All games of a player
 
-	public Map<String, List<GameDTO>> getAllGames(Player player) {
+	public Map<String, List<GameDTO>> getAllGames(Integer id) {
 		if (playerRepository.count() > 0) {
+			
+			Player player = new Player();
+			player.setId(id);
 
 			if (playerRepository.findById(player.getId()).isPresent()) {
 
