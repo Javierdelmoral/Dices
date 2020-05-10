@@ -88,22 +88,32 @@ public class PlayerController {
 	}
 
 //	How to transform it to JSON directly? Now is pure String(in json format)
+//	@GetMapping("dices/players/average")
+//	public ResponseEntity<String> getPlayersAverage() {
+//
+//		try {
+//			JSONObject averageJSON = playerService.getPlayersAverage();
+//			String averageJSONString = averageJSON.toString();
+//			return new ResponseEntity<String>(averageJSONString, HttpStatus.OK);
+//		} catch (ErrorException e) {
+//			String exceptionMessage = e.getMessage();
+//			JSONObject sendData = new JSONObject();
+//			JSONObject message = new JSONObject();
+//			message.put("type", "error");
+//			message.put("message", exceptionMessage);
+//			sendData.put("Message", message);
+//			return new ResponseEntity<String>(sendData.toString(), HttpStatus.BAD_REQUEST);
+//		}
+//	}
+	
+	//I changed this GET to have the average easily than with the ResponseEntity of above
 	@GetMapping("dices/players/average")
-	public ResponseEntity<String> getPlayersAverage() {
-
-		try {
+	public String getPlayersAverage() {
 			JSONObject averageJSON = playerService.getPlayersAverage();
-			return new ResponseEntity<String>(averageJSON.toString(), HttpStatus.FOUND);
-		} catch (ErrorException e) {
-			String exceptionMessage = e.getMessage();
-			JSONObject sendData = new JSONObject();
-			JSONObject message = new JSONObject();
-			message.put("type", "error");
-			message.put("message", exceptionMessage);
-			sendData.put("Message", message);
-			return new ResponseEntity<String>(sendData.toString(), HttpStatus.BAD_REQUEST);
-		}
+			String json = averageJSON.toString();
+			return json;
 	}
+
 
 	@PutMapping("dices/players/id")
 	public String updatePlayerById(@RequestBody Player player) {
