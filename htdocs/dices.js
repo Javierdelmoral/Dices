@@ -2,8 +2,6 @@
 
 function crear() {
     document.getElementById("fullInfo").innerHTML = "";//para setear a empty la info en html
-    document.getElementById("data").innerHTML = "";//para setear a empty la info en html
-    document.getElementById("sameRoles").innerHTML = "";//para setear a empty la info en html
 
     let playerName = document.getElementById("newPlayerName").value;
     let newPlayer = {
@@ -40,8 +38,6 @@ function crear() {
 
 function update() {
     document.getElementById("fullInfo").innerHTML = "";
-    document.getElementById("data").innerHTML = "";
-    document.getElementById("sameRoles").innerHTML = "";
 
     let playerID = +document.getElementById("playerIdToModify").value;
 
@@ -86,8 +82,6 @@ function update() {
 
 function delete_() {
     document.getElementById("fullInfo").innerHTML = "";
-    document.getElementById("data").innerHTML = "";
-    document.getElementById("sameRoles").innerHTML = "";
 
     let playerID = +document.getElementById("playerIdToModify").value;
 
@@ -122,8 +116,6 @@ function delete_() {
 
 function delete_All() {
     document.getElementById("fullInfo").innerHTML = "";
-    document.getElementById("data").innerHTML = "";
-    document.getElementById("sameRoles").innerHTML = "";
 
     $.ajax({
         type: "DELETE",
@@ -142,11 +134,7 @@ function delete_All() {
 //GET PLAYER BY ID (we are using a request mapping due to problems caused by GetMapping, so the id is passed through URL)
 
 function getById() {
-
-    document.getElementById("erase_repeated_results").innerHTML = ""; //to erase info I don't want to store
     document.getElementById("fullInfo").innerHTML = "";
-    document.getElementById("data").innerHTML = "";
-    document.getElementById("sameRoles").innerHTML = "";
 
     let playerID = document.getElementById("playerID").value;
 
@@ -190,11 +178,7 @@ function getById() {
 //GET ALL PLAYERS
 
 function getAllPlayers() {
-
-    document.getElementById("erase_repeated_results").innerHTML = ""; //to erase info I don't want to store
     document.getElementById("fullInfo").innerHTML = "";
-    document.getElementById("data").innerHTML = "";
-    document.getElementById("sameRoles").innerHTML = "";
 
     $.ajax({
         type: "GET",
@@ -227,11 +211,7 @@ function getAllPlayers() {
 //GET PLAYERS IN RANKING
 
 function getPlayersByRanking() {
-
-    document.getElementById("erase_repeated_results").innerHTML = ""; //to erase info I don't want to store
     document.getElementById("fullInfo").innerHTML = "";
-    document.getElementById("data").innerHTML = "";
-    document.getElementById("sameRoles").innerHTML = "";
 
     $.ajax({
         type: "GET",
@@ -263,11 +243,7 @@ function getPlayersByRanking() {
 //GET BEST PLAYER
 
 function getBestPlayer() {
-
-    document.getElementById("erase_repeated_results").innerHTML = ""; //to erase info I don't want to store
     document.getElementById("fullInfo").innerHTML = "";
-    document.getElementById("data").innerHTML = "";
-    document.getElementById("sameRoles").innerHTML = "";
 
     $.ajax({
         type: "GET",
@@ -297,11 +273,7 @@ function getBestPlayer() {
 //GET WORST PLAYER
 
 function getWorstPlayer() {
-
-    document.getElementById("erase_repeated_results").innerHTML = ""; //to erase info I don't want to store
     document.getElementById("fullInfo").innerHTML = "";
-    document.getElementById("data").innerHTML = "";
-    document.getElementById("sameRoles").innerHTML = "";
 
     $.ajax({
         type: "GET",
@@ -331,11 +303,7 @@ function getWorstPlayer() {
 //GET TOTAL AVERAGE
 
 function getAverage() {
-
-    document.getElementById("erase_repeated_results").innerHTML = ""; //to erase info I don't want to store
     document.getElementById("fullInfo").innerHTML = "";
-    document.getElementById("data").innerHTML = "";
-    document.getElementById("sameRoles").innerHTML = "";
 
     $.ajax({
         type: "GET",
@@ -364,8 +332,6 @@ function getAverage() {
 
 function roll() {
     document.getElementById("fullInfo").innerHTML = "";//para setear a empty la info en html
-    document.getElementById("data").innerHTML = "";//para setear a empty la info en html
-    document.getElementById("sameRoles").innerHTML = "";//para setear a empty la info en html
 
     let playerID = document.getElementById("playerID2").value;
 
@@ -403,11 +369,7 @@ function roll() {
 //GET GAMES BY PLAYER ID (we are using a request mapping due to problems caused by GetMapping, so the id is passed through URL)
 
 function getGamesById() {
-
-    document.getElementById("erase_repeated_results").innerHTML = ""; //to erase info I don't want to store
     document.getElementById("fullInfo").innerHTML = "";
-    document.getElementById("data").innerHTML = "";
-    document.getElementById("sameRoles").innerHTML = "";
 
     let playerID = document.getElementById("playerID3").value;
 
@@ -450,8 +412,6 @@ function getGamesById() {
 
 function deleteGames() {
     document.getElementById("fullInfo").innerHTML = "";
-    document.getElementById("data").innerHTML = "";
-    document.getElementById("sameRoles").innerHTML = "";
 
     let playerID = +document.getElementById("playerIdToDeleteGames").value;
 
