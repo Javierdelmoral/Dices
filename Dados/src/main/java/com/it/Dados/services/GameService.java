@@ -112,6 +112,7 @@ public class GameService {
 
 					gameDTO.setIdGame(listGames.get(i).getId());
 					gameDTO.setIdPlayer(listGames.get(i).getIdPlayer());
+					gameDTO.setName(player.getName());
 					gameDTO.setValueDice1(listGames.get(i).getDice1());
 					gameDTO.setValueDice2(listGames.get(i).getDice2());
 					gameDTO.setValueDice3(listGames.get(i).getDice3());
@@ -127,7 +128,8 @@ public class GameService {
 				}
 
 				System.out.println(listGamesDTO.toString());
-				allGames.put(player.getName().toUpperCase(), listGamesDTO);
+				allGames.put("GAMES", listGamesDTO);
+//				allGames.put(player.getName().toUpperCase(), listGamesDTO);
 
 				return allGames;
 

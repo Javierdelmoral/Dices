@@ -29,9 +29,9 @@ public class GameController {
 	@Autowired
 	PlayerRepository playerRepository;
 
-	@PostMapping("dices/players/id/games")
-	public Game createGame(@RequestBody Player player) {
-		return gameService.createGame(player.getId());
+	@PostMapping("dices/players/{id}/games")
+	public Game createGame(@PathVariable Integer id) {
+		return gameService.createGame(id);
 	}
 
 //	@GetMapping("dices/players/id/games")
@@ -45,10 +45,10 @@ public class GameController {
 		return gameService.getAllGames(id);
 	}
 
-	@DeleteMapping("dices/players/id/games")
-	public String deleteAllGames(@RequestBody Player player) {
-		gameService.deleteGamesById(player.getId());
+	@DeleteMapping("dices/players/{id}/games")
+	public String deleteAllGames(@PathVariable Integer id) {
+		gameService.deleteGamesById(id);
 
-		return "All games of Player with ID '" + player.getId() + "' have been deleted.";
+		return "All games of Player with ID '" + id + "' have been deleted.";
 	}
 }

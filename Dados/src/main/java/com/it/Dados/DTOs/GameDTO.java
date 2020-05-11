@@ -7,6 +7,7 @@ public class GameDTO {
 
 	private Integer idGame;
 	private Integer idPlayer;
+	private String name;
 	private Integer valueDice1;
 	private Integer valueDice2;
 	private Integer valueDice3;
@@ -32,7 +33,14 @@ public class GameDTO {
 	public void setIdPlayer(Integer idPlayer) {
 		this.idPlayer = idPlayer;
 	}
+	
+	public String getName() {
+		return name;
+	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
 	public Integer getValueDice1() {
 		return valueDice1;
 	}
@@ -111,6 +119,8 @@ public class GameDTO {
 				+ valueDice5 + ", valueDice6=" + valueDice6 + ", won=" + won + ", totalDiceRolls=" + totalDiceRolls
 				+ ", successRate=" + successRate + "]";
 	}
+
+
 	
 //	@Override
 //	public String toString() {

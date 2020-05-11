@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Hello Player!</title>
+    <meta charset='utf-8'>
+</head>
+
+<body>
+    <h1>Create new player: </h1>
+    <h2>Introduce your name: </h2>
+    <div>
+        <input id="newPlayerName" type="text" placeholder="Name" />
+        <br />
+        <form name="create" type="text">
+        </form>
+        <br />
+        <button id="button" onclick="crear()">Create</button>
+    </div>
+    <br />
+
+    <h1>Introduce a player ID to modify or to delete: </h1>
+    <div>
+        <input id="playerIdToModify" type="number" placeholder="ID" />
+
+        <button id="button" onclick="update()">Modify</button>
+        <button id="button" onclick="delete_()">Delete</button>
+    </div>
+    <br />
+
+    <h1>Delete all the players: </h1>
+    <div>
+        <button id="button" onclick="delete_All()">Delete All</button>
+    </div>
+    <br />
+
+    <h1>Introduce the ID of the player to obtain the data: </h1>
+    <div>
+        <input id="playerID" type="number" placeholder="ID" />
+        <button id="button" onclick="getById()">Show</button>
+        <br />
+        <br />
+    </div>
+
+    <h1>Show all the players: </h1>
+    <div>
+        <button id="button" onclick="getAllPlayers()">Get Players</button>
+    </div>
+    <br />
+
+    <h1>Show the ranking of players: </h1>
+    <div>
+        <button id="button" onclick="getPlayersByRanking()">Get Ranking</button>
+    </div>
+    <br />
+
+    <h1>Show the best player: </h1>
+    <div>
+        <button id="button" onclick="getBestPlayer()">Get best player</button>
+    </div>
+    <br />
+
+    <h1>Show the worst player: </h1>
+    <div>
+        <button id="button" onclick="getWorstPlayer()">Get worst player</button>
+    </div>
+    <br />
+
+    <h1>Show the average success of al players: </h1>
+    <div>
+        <button id="button" onclick="getAverage()">Get average</button>
+    </div>
+    <br />
+
+    <h1>Enter the id of the player you want to play with and let's roll the dice! </h1>
+    <div>
+        <input id="playerID2" type="number" placeholder="ID" />
+        <button id="button" onclick="roll()">Roll!</button>
+        <br />
+        <br />
+    </div>
+    <br />
+
+    <h1>Introduce the ID of the player to obtain her/his games: </h1>
+    <div>
+        <input id="playerID3" type="number" placeholder="ID" />
+        <button id="button" onclick="getGamesById()">Show</button>
+        <br />
+        <br />
+    </div>
+
+    <h1>Introduce a player ID to delete her/his games: </h1>
+    <div>
+        <input id="playerIdToDeleteGames" type="number" placeholder="ID" />
+        <button id="button" onclick="deleteGames()">Delete</button>
+    </div>
+    <br />
+
+    <h3>
+        <p class="Id_employee"><span id="fullInfo"> </span> </p>
+        <p class="Name_employee"><span id="name"> </span></p>
+        <p class="Role_employee"> <span id="role"> </span></p>
+        <p class="Role_employee"><span id="erase_repeated_results"></span> </span></p>
+        <p class="Role_employee"><span id="sameRoles"></span> </span></p>
+
+        <p class="data"><span id="data"> </span> </p>
+    </h3>
+
+    <h2>
+        <br />
+        <p class="Error_response"> <span id="error"> </span></p>
+    </h2>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="dices.js"></script>
+</body>
+
+</html>
