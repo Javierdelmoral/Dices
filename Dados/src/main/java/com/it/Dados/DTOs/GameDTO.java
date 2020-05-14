@@ -119,15 +119,4 @@ public class GameDTO {
 				+ valueDice5 + ", valueDice6=" + valueDice6 + ", won=" + won + ", totalDiceRolls=" + totalDiceRolls
 				+ ", successRate=" + successRate + "]";
 	}
-
-
-	
-//	@Override
-//	public String toString() {
-//		return "\n" + "GameDTO " + "\n" + "[idGame=" + idGame + ", idPlayer=" + idPlayer + ", valueDice1="
-//				+ valueDice1 + ", valueDice2=" + valueDice2 + ", won=" + won + ", totalDiceRolls=" + totalDiceRolls
-//				+ ", successRate=" + successRate + "]";
-//	}
-
-
 }

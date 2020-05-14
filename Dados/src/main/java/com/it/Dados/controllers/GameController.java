@@ -34,12 +34,6 @@ public class GameController {
 		return gameService.createGame(id);
 	}
 
-//	@GetMapping("dices/players/id/games")
-//	public Map<String, List<GameDTO>> getAllGames(@RequestBody Player player) {
-//		return gameService.getAllGames(player);
-//	}
-	
-	//Here we're using a RequestMapping instead of GetMapping because it can cause problems with the browsers
 	@RequestMapping("dices/players/{id}/games")
 	public Map<String, List<GameDTO>> getAllGames(@PathVariable Integer id) {
 		return gameService.getAllGames(id);

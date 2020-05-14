@@ -25,7 +25,6 @@ import com.it.Dados.DTOs.GameDTO;
 import com.it.Dados.DTOs.PlayerDTO;
 import com.it.Dados.domain.Player;
 import com.it.Dados.exception.ErrorException;
-import com.it.Dados.tools.View;
 import com.it.Dados.repositories.PlayerRepository;
 import com.it.Dados.services.PlayerService;
 
@@ -49,12 +48,6 @@ public class PlayerController {
 		return playerService.getAllPlayers();
 	}
 
-//	@GetMapping("dices/players/id")
-//	public Player getPlayerById(@RequestBody Player player) {
-//		return playerService.getPlayerById(player.getId());
-//	}
-	
-	//Here we're using a RequestMapping instead of GetMapping because it can cause problems with the browsers
     @RequestMapping("dices/players/{id}")
     public Player getPlayer(@PathVariable Integer id){
         return playerService.getPlayerById(id);
@@ -87,33 +80,12 @@ public class PlayerController {
 		return bestPlayer;
 	}
 
-//	How to transform it to JSON directly? Now is pure String(in json format)
-//	@GetMapping("dices/players/average")
-//	public ResponseEntity<String> getPlayersAverage() {
-//
-//		try {
-//			JSONObject averageJSON = playerService.getPlayersAverage();
-//			String averageJSONString = averageJSON.toString();
-//			return new ResponseEntity<String>(averageJSONString, HttpStatus.OK);
-//		} catch (ErrorException e) {
-//			String exceptionMessage = e.getMessage();
-//			JSONObject sendData = new JSONObject();
-//			JSONObject message = new JSONObject();
-//			message.put("type", "error");
-//			message.put("message", exceptionMessage);
-//			sendData.put("Message", message);
-//			return new ResponseEntity<String>(sendData.toString(), HttpStatus.BAD_REQUEST);
-//		}
-//	}
-	
-	//I changed this GET to have the average easily than with the ResponseEntity of above
 	@GetMapping("dices/players/average")
 	public String getPlayersAverage() {
 			JSONObject averageJSON = playerService.getPlayersAverage();
 			String json = averageJSON.toString();
 			return json;
 	}
-
 
 	@PutMapping("dices/players/id")
 	public String updatePlayerById(@RequestBody Player player) {
